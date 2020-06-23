@@ -8,4 +8,9 @@ INSIDE mern-exercise-tracker DIR:
 
 
 Enjoy :)
+
+This application was made with the help from freeCodeCamp.org and their
+tutorial into MERN Stack
+
+https://www.youtube.com/watch?v=7CqJlxBYj-M
 ------------------------------------------------------------------------
