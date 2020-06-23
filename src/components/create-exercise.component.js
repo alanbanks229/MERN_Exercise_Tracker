@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
+import axios from 'axios';
 
 // This allows us to add exercise to database
 // For this we need a constructor
@@ -29,10 +30,17 @@ export default class CreateExercise extends Component {
     //React calls this right before anything displays on the page
     // So when this create exercise component is about load...
     componentDidMount() {
-        this.setState({
-            users: ['test user'],
-            username: 'test user'
-        })
+        axios.get('http://localhost:5000/users/')
+            .then(response => {
+                console.log(response)
+                if (response.data.length > 0) {
+                    this.setState({
+                        users: response.data.map( user => user.username ),
+                        username: response.data[0].username
+                    })
+                }
+            })
+
     }
 
     onChangeUsername(e) {
@@ -68,6 +76,9 @@ export default class CreateExercise extends Component {
             date: this.state.date
         }
         console.log(exercise);
+
+        axios.post('http://localhost:5000/exercises/add', exercise)
+            .then(res => res.json(res.data));
 
         // So we are taking the person back to homepage here
         // Which will be the list of exercises.
@@ -110,7 +121,7 @@ export default class CreateExercise extends Component {
                     </div>
 
                     <div className="form-group">
-                        <label>Duratin (in minutes): </label>
+                        <label>Duration (in minutes): </label>
                         <input type="text"
                             required
                             className="form-control"
