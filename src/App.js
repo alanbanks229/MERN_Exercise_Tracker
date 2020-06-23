@@ -1,11 +1,15 @@
 /*
 
 before proceeding added the below
-
 yarn add bootstrap
 yarn add react-router-dom
 
 React router helps us map specific routes to specific components
+
+When we finished front end we can connect to backend using axios library
+
+in terminal that is done via
+$yarn add axious
 */
 
 import React from 'react';
